@@ -115,5 +115,8 @@ const colorbackground=Color(0xff333333);
 const colorQuantity=Color(0xffD9D9D9);
 const colorCircleLoans=Color(0xffFBE3E3);
 const colorLoans=Color(0xffF0F0F0);
+const Color navBgColor = Color(0xFFF8FAFC);     // very light grey
+const Color navUnselected = Color(0xFF94A3B8);  // cool grey
+const Color navSelected = Color(0xFF2563EB);    // strong blue
 
 

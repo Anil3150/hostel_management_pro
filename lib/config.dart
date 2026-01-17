@@ -11,19 +11,19 @@ class ConfigEnvironments {
   static final List<Map<String, String>> _availableEnvironments = [
     {
       'env': Environments.LOCAL,
-      'url': 'https://securelandapi.hashstack.in/api',
+      'url': 'https://hostel-backend-2x3e.onrender.com/api',
     },
     {
       'env': Environments.DEV,
-      'url': 'https://securelandapi.hashstack.in/api',
+      'url': 'https://hostel-backend-2x3e.onrender.com/api',
     },
     {
       'env': Environments.QAS,
-      'url': 'https://securelandapi.hashstack.in/api',
+      'url': 'https://hostel-backend-2x3e.onrender.com/api',
     },
     {
       'env': Environments.PRODUCTION,
-      'url': 'https://securelandapi.hashstack.in/api',
+      'url': 'https://hostel-backend-2x3e.onrender.com/api',
     },
   ];
 

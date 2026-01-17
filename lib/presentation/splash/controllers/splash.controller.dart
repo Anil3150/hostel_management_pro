@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 
+import '../../../domain/core/base/consts/app_const.dart';
 import '../../../domain/core/interfaces/base_controller.dart';
 import '../../../infrastructure/dal/services/secure_storage_services.dart';
 import '../../../infrastructure/navigation/routes.dart';
 
 class SplashController extends BaseController {
-  final count = 0.obs;
+
+  var token=''.obs;
+
   @override
   void onInit() {
     navigateToHome();
@@ -13,13 +16,17 @@ class SplashController extends BaseController {
   }
 
   Future<void> navigateToHome() async {
-    Future.delayed(const Duration(milliseconds: 2000), () async {
-      final token = await SecureStorageServices().readSecureData(key: 'TOKEN');
-      if (token != null) {
-        Get.offAllNamed(Routes.DASHBOARD);
-      } else if (token == null) {
-        Get.offAllNamed(Routes.LOGIN);
-      }
-    });
-  }
+    token.value = await SecureStorageServices().readSecureData(key: TOKEN) ?? '';
+    print('======================token data================');
+    print(token.value);
+    if (token.value.isNotEmpty) {
+      Future.delayed(const Duration(seconds: 2), () {
+        Get.toNamed(Routes.DASHBOARD);
+      });
+    } else if (token.value.isEmpty) {
+      Future.delayed(const Duration(seconds: 2), () {
+        Get.toNamed(Routes.LOGIN);
+      });
+    }
+}
 }

@@ -40,8 +40,13 @@ class ProfileTextFormField extends StatelessWidget {
   final BorderRadius? borderRadius;
   final Color? containerColor;
   FocusNode? focusNode;
+  final Color? borderColor;
+  final Color? focusedBorderColor;
+  final Color? errorBorderColor;
 
-  static const BorderSide _defaultBorderSide = BorderSide(color: Color(0xFF676767));
+  static const BorderSide _defaultBorderSide = BorderSide(
+    color: Color(0xFF676767),
+  );
 
   ProfileTextFormField({
     super.key,
@@ -76,6 +81,9 @@ class ProfileTextFormField extends StatelessWidget {
     this.borderRadius,
     this.containerColor,
     this.focusNode,
+    this.borderColor,
+    this.focusedBorderColor,
+    this.errorBorderColor,
   });
 
   Future<void> pickFile(BuildContext context) async {
@@ -102,28 +110,24 @@ class ProfileTextFormField extends StatelessWidget {
         if (lable.isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(left: 14, bottom: 4),
-            child: Text(
-              lable,
-              style: lableStyle,
-            ),
+            child: Text(lable, style: lableStyle),
           ),
         Container(
           padding:
-              containerPadding ?? const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+              containerPadding ??
+              const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
           color: containerColor,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: editorHeight == 0 ? Get.height / 20 : editorHeight,
+                height: editorHeight == 0 ? Get.height / 16 : editorHeight,
                 child: TextFormField(
                   focusNode: focusNode,
                   cursorColor: colorBlack,
                   obscureText: showText,
-                  onTap: enableFilePicker
-                      ? () => pickFile(context)
-                      : ontap,
+                  onTap: enableFilePicker ? () => pickFile(context) : ontap,
                   onEditingComplete: onEditingC,
                   onChanged: cOnChanged,
                   controller: controller,
@@ -143,15 +147,64 @@ class ProfileTextFormField extends StatelessWidget {
                     fillColor: Colors.transparent,
                     border: OutlineInputBorder(
                       borderRadius: borderRadius ?? BorderRadius.circular(10),
-                      borderSide: showBorder ? _defaultBorderSide : BorderSide.none,
+                      borderSide:
+                          showBorder
+                              ? BorderSide(
+                                color: borderColor ?? const Color(0xFF676767),
+                              )
+                              : BorderSide.none,
                     ),
-                    errorStyle:
-                        TextStyles.kTSFS10W500.copyWith(color: colorRedW800),
+
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius ?? BorderRadius.circular(10),
+                      borderSide:
+                          showBorder
+                              ? BorderSide(
+                                color: borderColor ?? const Color(0xFF676767),
+                              )
+                              : BorderSide.none,
+                    ),
+
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: borderRadius ?? BorderRadius.circular(10),
+                      borderSide:
+                          showBorder
+                              ? BorderSide(
+                                color: focusedBorderColor ?? Colors.blue,
+                                width: 1.5,
+                              )
+                              : BorderSide.none,
+                    ),
+
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: borderRadius ?? BorderRadius.circular(10),
+                      borderSide:
+                          showBorder
+                              ? BorderSide(
+                                color: errorBorderColor ?? Colors.red,
+                              )
+                              : BorderSide.none,
+                    ),
+
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: borderRadius ?? BorderRadius.circular(10),
+                      borderSide:
+                          showBorder
+                              ? BorderSide(
+                                color: errorBorderColor ?? Colors.red,
+                                width: 1.5,
+                              )
+                              : BorderSide.none,
+                    ),
+
+                    errorStyle: TextStyles.kTSFS10W500.copyWith(
+                      color: colorRedW800,
+                    ),
                     suffixIcon: showSufixIcon,
                     counterText: '',
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
