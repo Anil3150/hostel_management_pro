@@ -51,6 +51,11 @@ class DashboardScreen extends GetView<DashboardController> {
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
+                  icon: Icon(Icons.apartment_outlined),
+                  activeIcon: activeIcon(Icons.apartment),
+                  label: 'My Hostels',
+                ),
+                BottomNavigationBarItem(
                   icon: Icon(Icons.campaign_outlined),
                   activeIcon: activeIcon(Icons.campaign),
                   label: 'Broadcast',
